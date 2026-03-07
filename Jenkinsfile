@@ -2,14 +2,14 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = "vijay3247/flipkart:latest"
+        DOCKER_IMAGE = "akramsyed8046/flipkart:latest"
         DOCKER_CREDENTIALS = credentials('docker-hub') // must match Jenkins credentials ID
     }
 
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/vijay254452/flipkart.git'
+                git branch: 'main', url: 'https://github.com/akramsyed8046/flipkart.git'
             }
         }
 
