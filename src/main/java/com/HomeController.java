@@ -6,16 +6,33 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HomeController {
 
-    // Root URL mapping
+    // Home page
     @GetMapping("/")
     public String home() {
-        return "Welcome to Flipkart!";
+        return "Welcome to Flipkart Online Shopping Application!";
     }
 
-    // Example extra endpoint
-    @GetMapping("/hello")
-    public String hello() {
-        return "Hello, World!";
+    // Products API
+    @GetMapping("/products")
+    public String products() {
+        return "Available Products: Mobile Phones, Laptops, Fashion, Electronics";
+    }
+
+    // Example product
+    @GetMapping("/product/mobile")
+    public String mobile() {
+        return "Product: iPhone 15 | Price: ₹79,999 | Available on Flipkart";
+    }
+
+    // Order API
+    @GetMapping("/order")
+    public String order() {
+        return "Your Flipkart order has been placed successfully!";
+    }
+
+    // Offer API
+    @GetMapping("/offers")
+    public String offers() {
+        return "Flipkart Big Billion Days Offer: Up to 70% Off!";
     }
 }
-
