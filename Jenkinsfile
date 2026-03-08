@@ -3,13 +3,13 @@ pipeline {
 
     environment {
         DOCKER_IMAGE = "ankitanallamilli/flipkart:latest"
-        DOCKER_CREDENTIALS = "dockerhub-credentials"   // Jenkins credentials ID
+        DOCKER_CREDENTIALS = "dockerhub-credentials"
     }
 
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/akramsyed8046/flipkart.git'
+                git branch: 'main', url: 'https://github.com/ankitanallamilli/flipkart.git'
             }
         }
 
@@ -27,7 +27,7 @@ pipeline {
 
         stage('Push Docker Image') {
             steps {
-                withDockerRegistry([credentialsId: 'docker-hub', url: 'https://index.docker.io/v1/']) {
+                withDockerRegistry([credentialsId: "${DOCKER_CREDENTIALS}", url: 'https://index.docker.io/v1/']) {
                     sh "docker push ${DOCKER_IMAGE}"
                 }
             }
@@ -35,10 +35,10 @@ pipeline {
 
         stage('Deploy Local Container') {
             steps {
-                sh """
+                sh '''
                 docker rm -f flipkart-app || true
                 docker run -d --name flipkart-app -p 8999:8080 ${DOCKER_IMAGE}
-                """
+                '''
             }
         }
     }
