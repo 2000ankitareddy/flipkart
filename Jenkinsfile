@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = "akramsyed8046/flipkart:latest"
-        DOCKER_CREDENTIALS = credentials('docker-hub') // must match Jenkins credentials ID
+        DOCKER_IMAGE = "ankitanallamilli/flipkart:latest"
+        DOCKER_CREDENTIALS = "dockerhub-credentials"   // Jenkins credentials ID
     }
 
     stages {
