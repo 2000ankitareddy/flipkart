@@ -1,38 +1,93 @@
 package com.flipkart.controller;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-@RestController
+@Controller
 public class HomeController {
 
-    // Home page
     @GetMapping("/")
+    @ResponseBody
     public String home() {
-        return "Welcome to Flipkart Online Shopping Application!";
-    }
 
-    // Products API
-    @GetMapping("/products")
-    public String products() {
-        return "Available Products: Mobile Phones, Laptops, Fashion, Electronics";
-    }
+        return """
+        <html>
+        <head>
+            <title>Flipkart Clone</title>
+            <style>
+                body{
+                    font-family: Arial;
+                    background-color:#f1f3f6;
+                    margin:0;
+                }
+                header{
+                    background:#2874f0;
+                    color:white;
+                    padding:15px;
+                    text-align:center;
+                    font-size:28px;
+                }
+                .products{
+                    display:flex;
+                    justify-content:center;
+                    gap:30px;
+                    margin-top:40px;
+                }
+                .card{
+                    background:white;
+                    padding:20px;
+                    width:200px;
+                    text-align:center;
+                    box-shadow:0 2px 8px rgba(0,0,0,0.2);
+                    border-radius:10px;
+                }
+                img{
+                    width:150px;
+                    height:150px;
+                }
+                button{
+                    background:#fb641b;
+                    color:white;
+                    border:none;
+                    padding:10px;
+                    cursor:pointer;
+                    margin-top:10px;
+                }
+            </style>
+        </head>
 
-    // Example product
-    @GetMapping("/product/mobile")
-    public String mobile() {
-        return "Product: iPhone 15 | Price: ₹79,999 | Available on Flipkart";
-    }
+        <body>
 
-    // Order API
-    @GetMapping("/order")
-    public String order() {
-        return "Your Flipkart order has been placed successfully!";
-    }
+        <header>Flipkart Online Store</header>
 
-    // Offer API
-    @GetMapping("/offers")
-    public String offers() {
-        return "Flipkart Big Billion Days Offer: Up to 70% Off!";
+        <div class="products">
+
+            <div class="card">
+                <img src="https://m.media-amazon.com/images/I/71d7rfSl0wL._SX679_.jpg">
+                <h3>iPhone 15</h3>
+                <p>₹79,999</p>
+                <button>Buy Now</button>
+            </div>
+
+            <div class="card">
+                <img src="https://m.media-amazon.com/images/I/71TPda7cwUL._SX679_.jpg">
+                <h3>Laptop</h3>
+                <p>₹55,000</p>
+                <button>Buy Now</button>
+            </div>
+
+            <div class="card">
+                <img src="https://m.media-amazon.com/images/I/61y2VVWcGBL._SX679_.jpg">
+                <h3>Headphones</h3>
+                <p>₹2,999</p>
+                <button>Buy Now</button>
+            </div>
+
+        </div>
+
+        </body>
+        </html>
+        """;
     }
 }
